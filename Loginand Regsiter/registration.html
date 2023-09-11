@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .bottom-image {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+    </style>
+    <title>Image Recognition App - Register</title>
+</head>
+<body>
+    <h1>Image Recognition Application</h1>
+    <div class="container">
+        <h2>Register</h2>
+        <form action="registration.php" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+    <img class="bottom-image" src="https://firebase.google.com/static/docs/ml/images/automl.png" alt="Image Description">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                const username = form.username.value.trim();
+                const password = form.password.value.trim();
+                const email = form.email.value.trim();
+
+                if (username === "" || password === "" || email === "") {
+                    event.preventDefault();
+                    alert("Please fill out all fields.");
+                } else {
+                    // Redirect to login.html after successful registration
+                    window.location.href = "login.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

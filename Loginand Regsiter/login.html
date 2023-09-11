@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#login-form").submit(function (event) {
+                event.preventDefault();
+
+                const username = $("input[name='username']").val().trim();
+                const password = $("input[name='password']").val().trim();
+
+                if (username === "" || password === "") {
+                    alert("Please fill out all fields.");
+                } else {
+                    // Use AJAX to send the form data to login.php
+                    $.ajax({
+                        url: "login.php", // Use the correct PHP script URL
+                        method: "POST",
+                        data: { username: username, password: password },
+                        success: function (response) {
+                            if (response === "success") {
+                                // Display a success message
+                                alert("Login successful");
+                                // Redirect to the content page
+                                alert("Redirecting to content page...")
+                            } else {
+                                // Display an error message if login fails
+                                alert("Login failed. Please check your credentials.");
+                            }
+                        },
+                        error: function () {
+                            alert("An error occurred. Please try again later.");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <title>Image Recognition App - Login</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="#" method="POST" id="login-form">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Log in</button>
+        </form>
+        <p>Don't have an account? <a href="registration.html">Register</a></p>
+    </div>
+</body>
+</html>

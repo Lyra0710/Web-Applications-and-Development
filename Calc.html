@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }f
+        
+        h1 {
+            color: #ff6b6b;
+        }
+        
+        #calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        button {
+            font-size: 18px;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #clear {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        .number, .operator {
+            background-color: #ffd166;
+            color: #333;
+        }
+        
+        #calculate {
+            background-color: #06d6a0;
+            color: white;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    
+    <div id="calculator">
+        <input type="text" id="result" disabled>
+        <br>
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator">+</button>
+        <br>
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">-</button>
+        <br>
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">*</button>
+        <br>
+        <button id="clear">C</button>
+        <button class="number">0</button>
+        <button id="calculate">=</button>
+        <button class="operator">/</button>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            let currentInput = '';
+            
+            $('.number').click(function() {
+                currentInput += $(this).text();
+                $('#result').val(currentInput);
+            });
+            
+            $('.operator').click(function() {
+                currentInput += ' ' + $(this).text() + ' ';
+                $('#result').val(currentInput);
+            });
+            
+            $('#clear').click(function() {
+                currentInput = '';
+                $('#result').val('');
+            });
+            
+            $('#calculate').click(function() {
+                try {
+                    const result = eval(currentInput);
+                    $('#result').val(result);
+                    currentInput = result;
+                } catch (error) {
+                    $('#result').val('Error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
